@@ -6,9 +6,9 @@ const Gif = (props) => {
     return(
         <div className='gif'>
             <h3>{gif.title}</h3>
-            <p>{gif.username}</p>
             <img width="200" src={gif.images.original.url}/>
-            <p>Rating: {gif.rating}</p>
+            <p> <strong>Source:</strong> <br></br>{gif.username} </p>
+            <p> <strong>Rating:</strong> {gif.rating} </p>
             <a target="_blank" href={gif.url}><button>Check it out on Giphy</button></a>
         </div>
     )

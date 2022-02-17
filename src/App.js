@@ -23,7 +23,7 @@ function App(props) {
   return (
     <div className="App">
       <h1>Async Redux Project</h1>
-      <h2> Search for Gifs</h2>
+      <h2> <i>Search for Gifs</i> </h2>
       <GifForm />
 
       {

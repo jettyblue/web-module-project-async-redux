@@ -3,8 +3,8 @@ import React from 'react';
 const GifForm = () => {
     return (
         <form>
-            <input />
-            <button>Search</button>
+            <input placeholder='Search For a Gif'/>
+            <button className='searchBtn'>Search</button>
         </form>
     )
 }
