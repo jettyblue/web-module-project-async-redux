@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import axios from 'axios';
 
 import GifList from './components/GifList';
@@ -7,12 +8,14 @@ import data from './data/gifs';
 import './App.css';
 
 function App(props) {
-  const gifs = data;
-  const loading = false;
-  const error = '';
+  console.log(props);
 
-  // const [dogData, setDogData] = useState([]);
-  // const [error, setError] = useState(null);
+  const { loading } = props;
+
+    // ** slices of state **
+  // const gifs = data;
+  // const loading = false;
+  // const error = '';
 
 
   // useEffect(() => 
@@ -33,14 +36,20 @@ function App(props) {
       <GifForm />
 
       {
-        loading? <h3>Loading...</h3> : <GifList gifs={gifs} />
+        loading ? <h3>Loading...</h3> : <GifList />
       }
 
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    loading: state.loading
+  }
+}
+
+export default connect(mapStateToProps)(App);
 
 // rdqOVrR8QiWAO6A5R3i5yuQqIZBlQ1Af
 
