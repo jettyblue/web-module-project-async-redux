@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
 import GifList from './components/GifList';
 import GifForm from './components/GifForm';
+import { getGifs } from './actions';
 import data from './data/gifs';
 import './App.css';
 
 function App(props) {
-  console.log(props);
-
-  const { loading } = props;
+  const { loading, error, getGifs } = props;
+  // console.log(props);
 
     // ** slices of state **
   // const gifs = data;
@@ -18,15 +18,9 @@ function App(props) {
   // const error = '';
 
 
-  // useEffect(() => 
-  //   axios.get("https://api.giphy.com/v1/gifs/search?api_key=rdqOVrR8QiWAO6A5R3i5yuQqIZBlQ1Af&q=dogs")
-  //   .then(res => {
-  //     console.log(res.data.data)
-  //   })
-  //   .catch(err => {
-  //     console.error(err)
-  //   }) 
-  // )
+  useEffect(() => {
+    getGifs();
+  }, []);
 
 
   return (
@@ -34,6 +28,10 @@ function App(props) {
       <h1>Async Redux Project</h1>
       <h2> Search for Gifs</h2>
       <GifForm />
+
+      {
+        (error !== "") && <h3>{error}</h3>
+      }
 
       {
         loading ? <h3>Loading...</h3> : <GifList />
@@ -45,11 +43,17 @@ function App(props) {
 
 const mapStateToProps = state => {
   return {
-    loading: state.loading
+    loading: state.loading,
+    error: state.error
   }
 }
 
-export default connect(mapStateToProps)(App);
+const mapActionsToProps = () => {
+  return {
+    fetchStart
+  }
+}
+
+export default connect(mapStateToProps, { getGifs })(App);
 
 // rdqOVrR8QiWAO6A5R3i5yuQqIZBlQ1Af
-
