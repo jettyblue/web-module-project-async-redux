@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
 
 import GifList from './components/GifList';
 import GifForm from './components/GifForm';
@@ -17,11 +16,9 @@ function App(props) {
   // const loading = false;
   // const error = '';
 
-
   useEffect(() => {
     getGifs();
   }, []);
-
 
   return (
     <div className="App">
